@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Добавить трек
+{% endblock %}
+
+{% block content %}
+
+<h2>Новый трек</h2>
+
+{% for error in errors|default([]) %}
+    <p style="color: red;">{{ error }}</p>
+{% endfor %}
+
+<form method="POST">
+
+    <p>
+        <label>Название трека</label><br>
+        <input type="text" name="title" value="{{ title|default('') }}">
+    </p>
+
+    <p>
+        <label>Исполнитель</label><br>
+        <input type="text" name="artist" value="{{ artist|default('') }}">
+    </p>
+
+    <p>
+        <label>Жанр</label><br>
+        <input type="text" name="genre" value="{{ genre|default('') }}">
+    </p>
+
+    <p>
+        <label>
+            <input type="checkbox" name="is_favorite" value="true" {% if is_favorite %}checked{% endif %}>
+            Любимый трек
+        </label>
+    </p>
+
+    <button type="submit">Сохранить</button>
+
+</form>
+
+{% endblock %}

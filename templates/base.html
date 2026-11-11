@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}MusicBox{% endblock %}</title>
+</head>
+<body>
+
+    <header>
+        <h1>MusicBox</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Главная</a>
+            <a href="{{ url_for('add_track') }}">Добавить трек</a>
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

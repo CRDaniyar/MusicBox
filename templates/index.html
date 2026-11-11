@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Главная — MusicBox
+{% endblock %}
+
+{% block content %}
+
+<h2>Мои треки</h2>
+
+{% if tracks %}
+
+    {% for track in tracks %}
+        <div>
+            <h3>
+                {{ track.title }} — {{ track.artist }}
+                {% if track.is_favorite %}
+                    <span> (Favorite)</span>
+                {% endif %}
+            </h3>
+            <p><strong>Жанр:</strong> {{ track.genre }}</p>
+            <a href="{{ url_for('detail', track_id=track.id) }}">Подробнее</a>
+        </div>
+        <hr>
+    {% endfor %}
+
+{% else %}
+    <p>Пока треков нет.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ track.title }}
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ track.title }}</h2>
+
+<p><strong>Исполнитель:</strong> {{ track.artist }}</p>
+<p><strong>Жанр:</strong> {{ track.genre }}</p>
+
+{% if track.is_favorite %}
+    <p> <em>Этот трек добавлен в избранное</em></p>
+{% endif %}
+
+<p>{{ track.description }}</p>
+
+<a href="{{ url_for('index') }}">Назад</a>
+
+{% endblock %}
