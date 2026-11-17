@@ -8,6 +8,20 @@
 
 <h2>Мои треки</h2>
 
+<form method="GET" action="{{ url_for('index') }}">
+    <input type="text" name="q" placeholder="Поиск по треку или артисту..." value="{{ search_query|default('') }}">
+    <label>
+        <input type="checkbox" name="favorites" value="1" {% if only_favorites %}checked{% endif %}>
+        Только любимые ⭐️
+    </label>
+    <button type="submit">Найти</button>
+    {% if search_query or only_favorites %}
+        <a href="{{ url_for('index') }}">Сбросить</a>
+    {% endif %}
+</form>
+
+<hr>
+
 {% if tracks %}
 
     {% for track in tracks %}
@@ -15,7 +29,7 @@
             <h3>
                 {{ track.title }} — {{ track.artist }}
                 {% if track.is_favorite %}
-                    <span> (Favorite)</span>
+                    <span>⭐️ (Любимый)</span>
                 {% endif %}
             </h3>
             <p><strong>Жанр:</strong> {{ track.genre }}</p>
@@ -25,7 +39,7 @@
     {% endfor %}
 
 {% else %}
-    <p>Пока треков нет.</p>
+    <p>Треки не найдены.</p>
 {% endif %}
 
 {% endblock %}
